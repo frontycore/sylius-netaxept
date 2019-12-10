@@ -1,0 +1,9 @@
+fronty:
+  netaxept:
+    gateway_label: Netaxept
+    merchant_id: Identyfikator klienta
+    service_id: Identyfikator sklepu
+    service_key: Klucz sklepu
+    environment: Środowisko
+    sandbox: Testowanie
+    production: Produkcja

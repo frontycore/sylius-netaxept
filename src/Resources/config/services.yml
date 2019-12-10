@@ -1,0 +1,13 @@
+# Services
+services:
+    fronty.netaxept.form.type.configuration:
+        class: Fronty\SyliusNetaxeptPlugin\Form\Type\SyliusNetaxeptConfigurationType
+        tags:
+            - { name: sylius.gateway_configuration_type, type: netaxept, label: fronty.netaxept.gateway_label }
+            - { name: form.type }
+
+    fronty.netaxept.gateway_factory:
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        arguments: [FDM\Payum\Netaxept\NetaxeptGatewayFactory]
+        tags:
+            - { name: payum.gateway_factory_builder, factory: netaxept }
