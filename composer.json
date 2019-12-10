@@ -1,8 +1,8 @@
 {
-    "name": "fronty/sylius-imoje",
+    "name": "fronty/sylius-netaxept",
     "type": "sylius-plugin",
-    "keywords": ["imoje.pl", "gateway", "payment", "sylius", "sylius-plugin"],
-    "description": "Integration of imoje.pl Paywall API to Sylius as a new payment method.",
+    "keywords": ["Netaxept", "gateway", "payment", "sylius", "sylius-plugin"],
+    "description": "Integration of Netaxept API to Sylius as a new payment method.",
     "license": "MIT",
     "require": {
         "php": "^7.2",
