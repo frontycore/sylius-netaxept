@@ -21,10 +21,10 @@ final class SyliusNetaxeptConfigurationType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->add('environment', ChoiceType::class, [
+			->add('sandbox', ChoiceType::class, [
                 'choices' => [
-                    'fronty.netaxept.sandbox' => 'sandbox',
-                    'fronty.netaxept.production' => 'production'
+                    'fronty.netaxept.sandbox' => TRUE,
+                    'fronty.netaxept.production' => FALSE
                 ],
                 'label' => 'fronty.netaxept.environment',
             ])
@@ -37,7 +37,7 @@ final class SyliusNetaxeptConfigurationType extends AbstractType
 					])
 				]
 			])
-			->add('serviceKey', TextType::class, [
+			->add('token', TextType::class, [
 				'label' => 'fronty.netaxept.service_key',
 				'constraints' => [
 					new NotBlank([
