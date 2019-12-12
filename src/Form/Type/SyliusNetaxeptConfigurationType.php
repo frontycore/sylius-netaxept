@@ -37,15 +37,6 @@ final class SyliusNetaxeptConfigurationType extends AbstractType
 					])
 				]
 			])
-			->add('serviceId', TextType::class, [
-				'label' => 'fronty.netaxept.service_id',
-				'constraints' => [
-					new NotBlank([
-						'message' => 'fronty.netaxept.configuration.service_id.not_blank',
-						'groups' => ['sylius']
-					])
-				]
-			])
 			->add('serviceKey', TextType::class, [
 				'label' => 'fronty.netaxept.service_key',
 				'constraints' => [
