@@ -8,6 +8,62 @@ services:
 
     fronty.netaxept.gateway_factory:
         class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
-        arguments: [FDM\Payum\Netaxept\NetaxeptGatewayFactory]
+        # arguments: [FDM\Payum\Netaxept\NetaxeptGatewayFactory]
+        arguments: [Fronty\SyliusNetaxeptPlugin\SyliusNetaxeptGatewayFactory]
         tags:
             - { name: payum.gateway_factory_builder, factory: netaxept }
+
+    # fronty.netaxept.register_action:
+    #     class: FDM\Payum\Netaxept\Action\RegisterAction
+    #     tags:
+    #         - { name: payum.action, factory: netaxept }
+
+    # payum.builder:
+    #     class: FDM\Payum\Netaxept\PayumBuilder
+    #     calls:
+    #         - method: setMainRegistry
+    #           arguments:
+    #             - '@payum.static_registry'
+    #         - method: setHttpRequestVerifier
+    #           arguments:
+    #             - '@payum.http_request_verifier_builder'
+    #         - method: setTokenFactory
+    #           arguments:
+    #             - '@payum.token_factory_builder'
+    #         - method: setTokenStorage
+    #           arguments:
+    #             - '@payum.security.token_storage'
+    #         - method: setGenericTokenFactoryPaths
+    #           arguments:
+    #             - capture: '%payum.capture_path%'
+    #             - notify: '%payum.notify_path%'
+    #             - authorize: '%payum.authorize_path%'
+    #             - refund: '%payum.refund_path%'
+    #             - cancel: '%payum.cancel_path%'
+    #             - payout: '%payum.payout_path%'
+    #         - method: setCoreGatewayFactory
+    #           arguments:
+    #             - '@payum.core_gateway_factory_builder'
+    #         - method: addDefaultStorages
+    #         # - method: addStorage
+    #         #   arguments:
+    #         #     - 'FDM\Payum\Netaxept\Model\Payment'
+    #         #     - '@=new \Payum\Core\Storage\FilesystemStorage(sys_get_temp_dir(), Payment::class, 'number')'
+
+    #         - method: addGatewayFactory
+    #           arguments:
+    #             - netaxept
+                
+    #         - method: addGateway
+    #           arguments:
+    #             - netaxept
+    #             - {factory: netaxept}
+    #         # - method: addStorage
+    #         #     arguments:
+
+# payum:
+#     gateways:
+#         netaxept:
+#             factory: netaxept
+            # factory: Fronty\SyliusNetaxeptPlugin\SyliusNetaxeptGatewayFactory
+            # payum.action.register: @fronty.netaxept.register_action
