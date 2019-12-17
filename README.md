@@ -1,15 +1,15 @@
 # Sylius IMoje.pl payment gateway plugin
 
-Integration of imoje.pl Paywall API to Sylius as a new payment method.
+Integration of Nets (Netaxept) payment gateway to Sylius as a new payment method.
 
-See Paywall [API documentation](https://www.imoje.pl/developerzy/paywall-api).
+Big thanks to [FDM](https://github.com/fdmweb) and his [Netaxept Payum bundle](https://github.com/fdmweb/FDM-netaxept).
 
-Check also great [GoPay plugin by Czende](https://packagist.org/packages/czende/gopay-plugin). It has been great inspiration for IMoje.pl payment plugin.
+Check my other Sylius plugin for [IMoje.pl payments](https://github.com/frontycore/sylius-imoje).
 
 ## Installation
 
 ```bash
-$ composer require fronty/sylius-imoje
+$ composer require fronty/sylius-netaxept
 ```
 
 Add plugin dependencies to your AppKernel.php file:
@@ -20,36 +20,27 @@ public function registerBundles()
     return array_merge(parent::registerBundles(), [
         ...
 
-        new \Fronty\SyliusIMojePlugin\FrontySyliusIMojePlugin(),
+        new \Fronty\SyliusNetaxeptPlugin\FrontySyliusNetaxeptPlugin(),
     ]);
 }
 ```
 
 ## Beware
+This plugin introduces only very simple Netaxept implementation, it only handles payment registration and authorization. It doesn't do any refunds when order is storned etc.
 This plugin is not tested, therefore it's not an official Sylius plugin. Please be careful.
 If you'd like to add testing, you are more than welcome to send PR!
 
 ## Usage
 ### Sandbox (testing mode)
-Register new Sandbox account at https://sandbox.imoje.ingbank.pl/ (PL only).
-Log in and go to "Sklepy" tab (top left). In the table, click on "Sklep testowy" to expand and then to "Szczegóły" link.
-Go to "Dane do integracji" tab. There you will see your credentials, which should be filled in payment setting:
-- "Identyfikator klienta" is Merchant ID
-- "Identyfikator sklepu" is Service ID
-- "Klucz sklepu" is Secret Key
-
-Go to Sylius admin and create new payment of IMoje.pl type. Choose Testing environment and use credentials from sanbox admin.
+Go to Sylius admin and create new payment method of Netaxept type. Choose Testing environment and fill in the Merchant ID and Token fiels.
+You should receive these credentials when you registered a Netaxept account.
 
 ### Production
-You will receive production credentials from IMoje.pl organization. After that, go to IMoje.pl payment settings in Sylius admin,
-fill given credentials and select Production environment. That's all :)
-
-
-## How to change visible payment methods.
-By default, this plugin uses only `card` and `pbl` payment methods. If you want to specify others or change any other Gateway configuration,
-just overwrite service `fronty.imoje.gateway_factory` with your own and change `visibleMethod` in `payum.default_options` field.
+After you receive Netaxept production credentials, fill these to the payment method fields and switch the environment to Production. That's all :)
 
 
 ## Todo
 - Tests to become an official Sylius plugin :)
+- Refunds implementation
+- Separate Register, Capture and Authorize Payum actions (everything is in capture action now)
 - Notification implementation
