@@ -1,4 +1,4 @@
-# Sylius IMoje.pl payment gateway plugin
+# Sylius Netaxept payment gateway plugin
 
 Integration of Nets (Netaxept) payment gateway to Sylius as a new payment method.
 
