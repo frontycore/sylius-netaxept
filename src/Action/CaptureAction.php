@@ -14,7 +14,7 @@ use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Request\GetHttpRequest;
 use FDM\Netaxept\Api;
-use FDM\Payum\Netaxept\Exception\CancelledException;
+use FDM\Netaxept\Exception\Exception;
 
 /**
  * @author Ondrej Seliga <ondrej@seliga.cz>
@@ -49,8 +49,12 @@ class CaptureAction implements ActionInterface, ApiAwareInterface
 			);
 		} else {
 	        if (strtolower($_GET['responseCode']) === 'ok') {
-	        	$this->api->authorize((array) $model);
-	        	$this->api->capture((array) $model);
+	        	try {
+	        		$this->api->authorize((array) $model);
+	        		$this->api->capture((array) $model);
+	        	} catch (Exception $e) {
+	        		// Do nothing
+	        	}
 	        }
 		}
 	}
